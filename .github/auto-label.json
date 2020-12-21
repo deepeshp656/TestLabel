@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "frontend": ["*.txt", "*.css", "*.html"],
+    "backend": ["app/", "*.jpg"],
+    "ci": ".circleci"
+  }
+}
