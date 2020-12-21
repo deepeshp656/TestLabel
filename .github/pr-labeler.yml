@@ -1,4 +1,4 @@
 feature: ['*/*.txt', 'feat/*']
-fix: */*.jpg
+fix: [*/*.jpg]
 chore: chore/*
 fixed-branch: fixed-branch-name
