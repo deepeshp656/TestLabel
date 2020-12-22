@@ -12,7 +12,7 @@ jobs:
   Find:
  
     name: Run only when the labels do not include "dependencies"
-    if: ${{ !contains(github.event.pull_request.labels.*.names, 'duplicate') }}
+    if: ${{ !contains(github.event.pull_request.labels.*.names, 'auto-run') }}
     runs-on: ubuntu-latest
     steps:
       - name: debug
