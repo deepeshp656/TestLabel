@@ -13,6 +13,7 @@ on:
   pull_request_review:
     types:
       - submitted
+      - approved
   check_suite:
     types:
       - completed
@@ -34,3 +35,4 @@ jobs:
           MERGE_RETRY_SLEEP: "10000"
           UPDATE_LABELS: ""
           UPDATE_METHOD: "rebase"
+          MERGE_DELETE_BRANCH: "true"
