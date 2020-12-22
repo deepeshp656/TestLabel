@@ -27,7 +27,7 @@ jobs:
       run: echo github.event.pull_request.labels.*.names
     - uses: hmarr/auto-approve-action@v2.0.0
        
-      if: contains( toJson(github), 'auto-run' )
+      if: contains( github.event.pull_request.labels.*.names, 'auto-run' )
       with:
         github-token: "${{ secrets.GITHUB_TOKEN }}"
         
