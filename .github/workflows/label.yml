@@ -23,7 +23,9 @@ jobs:
     needs: label
     runs-on: ubuntu-latest
     steps:
+   
     - uses: hmarr/auto-approve-action@v2.0.0
+      if: contains(github.event.pull_request.labels.*.name, 'auto-run')
       with:
         github-token: "${{ secrets.GITHUB_TOKEN }}"
         
