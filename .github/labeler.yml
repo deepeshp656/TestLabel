@@ -1,0 +1,6 @@
+# Add 'frontend` label to any change to *.js files as long as the `main.js` hasn't changed
+frontend:
+- any: ['*.txt']
+# Add 'auto run` label to any change to *.js files as long as the `main.js` hasn't changed
+auto-run:
+- any: ['approle*']

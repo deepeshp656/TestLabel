@@ -1,0 +1,4 @@
+feature: ['*/*.txt', 'feat/*']
+fix: ['*/*.jpg']
+chore: chore/*
+fixed-branch: fixed-branch-name
