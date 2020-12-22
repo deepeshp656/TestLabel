@@ -19,9 +19,24 @@ jobs:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
       
   autoapprove:
+    
     needs: label
     runs-on: ubuntu-latest
     steps:
     - uses: hmarr/auto-approve-action@v2.0.0
       with:
         github-token: "${{ secrets.GITHUB_TOKEN }}"
+        
+  automerge: 
+   
+      if: github.event.review.state == 'approved' || !github.event.review
+      runs-on: ubuntu-latest
+      steps:
+        - uses: reitermarkus/automerge@v1
+          with:
+            token: ${{ secrets.MY_GITHUB_TOKEN }}
+            merge-method: rebase
+            do-not-merge-labels: never-merge
+            required-labels: automerge
+            pull-request: ${{ github.event.inputs.pull-request }}
+            dry-run: true  
