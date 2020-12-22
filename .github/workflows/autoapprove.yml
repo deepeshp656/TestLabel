@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: hmarr/auto-approve-action@v2.0.0
-      if:   github.event.label.name == 'auto-run'
+      if: github.event.label.name == 'auto-run'
       with:
         github-token: "${{ secrets.GITHUB_TOKEN }}"
       
