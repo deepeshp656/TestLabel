@@ -28,7 +28,7 @@ jobs:
         github-token: "${{ secrets.GITHUB_TOKEN }}"
         
   automerge: 
-   
+      needs: [autoapprove,label]
       if: github.event.review.state == 'approved' || !github.event.review
       runs-on: ubuntu-latest
       steps:
