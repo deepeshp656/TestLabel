@@ -31,16 +31,4 @@ jobs:
       with:
         github-token: "${{ secrets.GITHUB_TOKEN }}"
         
-  automerge: 
-      needs: [autoapprove,label]
-      if: github.event.review.state == 'approved' || !github.event.review
-      runs-on: ubuntu-latest
-      steps:
-        - uses: reitermarkus/automerge@v1
-          with:
-            token: "${{ secrets.GITHUB_TOKEN }}"
-            merge-method: rebase
-            do-not-merge-labels: never-merge
-            required-labels: auto-run
-            pull-request: ${{ github.event.inputs.pull-request }}
-            dry-run: true  
+
