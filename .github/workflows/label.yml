@@ -12,7 +12,7 @@ jobs:
   Find:
  
     name: Run only when the labels do not include "dependencies"
-    if: ${{ !contains(github.event.pull_request.labels.*.names, 'dependencies') }}
+    if: ${{ contains(toJson(github.event.pull_request.labels.*.name), 'auto-rule') }}
     runs-on: ubuntu-latest
     steps:
       - name: debug
