@@ -23,8 +23,12 @@ jobs:
     needs: label
     runs-on: ubuntu-latest
     steps:
-   
+    - name: current branch
+      run: | 
+        array = ${{ github.event.pull_request.labels }}
+        echo "${array[*]}" 
     - uses: hmarr/auto-approve-action@v2.0.0
+       
       if: contains( toJson(github), 'auto-run' )
       with:
         github-token: "${{ secrets.GITHUB_TOKEN }}"
