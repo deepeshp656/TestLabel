@@ -15,5 +15,11 @@ jobs:
 
     steps:
     - uses: actions/labeler@v3
+      
+  autoapprove:
+    needs: label
+    runs-on: ubuntu-latest
+    steps:
+    - uses: hmarr/auto-approve-action@v2.0.0
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
