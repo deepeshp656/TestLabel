@@ -12,11 +12,12 @@ jobs:
   Find:
  
     name: Run only when the labels do not include "dependencies"
-    if: ${{ contains(toJson(github.event.pull_request.labels.*.name), 'auto-rule') }}
+    if: ${{ contains!(github.event.pull_request.labels.*.names, 'duplicate') }}
     runs-on: ubuntu-latest
     steps:
       - name: debug
         run: |
+          echo "${{github.event.pull_request.labels.*.names}}"
           echo "${{ toJson(github.event.pull_request.labels) }}"
           echo "${{ toJson(github.event.pull_request.labels.*.name) }}"
     
