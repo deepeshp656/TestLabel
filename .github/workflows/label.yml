@@ -19,13 +19,16 @@ jobs:
     - uses: actions/labeler@v3
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
+      
+      
   Find:
     needs: label
     env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
  
     name: Run only when the labels include "auto-run and then approve"
-    if: ${{ contains(github.event.pull_request.labels.*.name, 'auto-run') }}
+    
+    if: ${{contains(github.event.pull_request.labels.*.name, 'auto-run') }}
     runs-on: ubuntu-latest
     steps:
       - name: debug
