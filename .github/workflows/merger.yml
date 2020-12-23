@@ -15,7 +15,7 @@ on:
   # Try merging a pull request when it is approved.
   pull_request_review:
     types:
-      - submitted
+      - approved
 
   # Try merging a pull request when a draft is marked as “ready for review”, when
   # a required label is applied or when a “do not merge” label is removed.
@@ -25,12 +25,7 @@ on:
       - unlabeled
       - ready_for_review
 
-  # Try merging the specified pull request or all open pull requests if none is specified.
-  workflow_dispatch:
-    inputs:
-      pull-request:
-        description: Pull Request Number
-        required: false
+
 
 jobs:
   automerge:
