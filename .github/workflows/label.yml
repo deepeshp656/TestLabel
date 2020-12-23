@@ -28,7 +28,7 @@ jobs:
  
     name: Run only when the labels include "auto-run and then approve"
     
-    if: contains(github.event.pull_request.labels.*.name, 'auto-run')
+    if: contains(github.event.pull_request.labels.*.name, 'bug')
     runs-on: ubuntu-latest
     steps:
       - name: debug
