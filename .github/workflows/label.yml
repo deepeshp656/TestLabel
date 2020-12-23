@@ -9,17 +9,7 @@ name: Labeler
 on: [pull_request]
 
 jobs:
-  Find:
- 
-    name: Run only when the labels do not include "dependencies"
-    if: ${{ !contains(github.event.pull_request.labels.*.names, 'auto-run') }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: debug
-        run: |
-          echo "${{github.event.pull_request.labels.*.names}}"
-          echo "${{ toJson(github.event.pull_request.labels) }}"
-          echo "${{ toJson(github.event.pull_request.labels.*.name) }}"
+  
     
   label:
 
@@ -30,9 +20,26 @@ jobs:
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
       
+      
+  Find:
+    needs: label
+    env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+ 
+    name: Run only when the labels include "auto-run and then approve"
+    
+    if: contains(github.event.pull_request.labels.*.name, 'auto-run')
+    runs-on: ubuntu-latest
+    steps:
+      - name: debug
+        run: |
+          echo "${{github.event.pull_request.labels.*.names}}"
+          echo "${{ toJson(github.event.pull_request.labels) }}"
+          echo "${{ toJson(github.event.pull_request.labels.*.name) }}"  
+      
   autoapprove:
     
-    needs: label
+    needs: [label,Find]
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context

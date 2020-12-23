@@ -12,7 +12,6 @@ on:
       - unlocked
   pull_request_review:
     types:
-      - submitted
       - approved
   check_suite:
     types:
@@ -20,6 +19,7 @@ on:
   status: {}
 jobs:
   automerge:
+    if: github.event.review.state == 'approved' || !github.event.review
     runs-on: ubuntu-latest
     steps:
       - name: automerge
