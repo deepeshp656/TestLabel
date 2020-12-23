@@ -15,7 +15,7 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
  
     name: Run only when the labels do not include "dependencies"
-    if: ${{ !contains(github.event.pull_request.labels.*.names, 'auto-run') }}
+    if: ${{ contains(github.event.pull_request.labels.*.names, 'auto-run') }}
     runs-on: ubuntu-latest
     steps:
       - name: debug
