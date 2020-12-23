@@ -35,7 +35,7 @@ jobs:
       
   autoapprove:
     
-    needs: [label,Find]
+    needs: label
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
