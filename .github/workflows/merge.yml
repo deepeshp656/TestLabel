@@ -1,5 +1,9 @@
 name: automerge
 on:
+  workflow_run:
+    workflows: ["Labeler"]
+    types: 
+      - completed
   pull_request:
     types:
       - labeled
@@ -12,7 +16,6 @@ on:
       - unlocked
   pull_request_review:
     types:
-      - submitted
       - approved
   check_suite:
     types:
