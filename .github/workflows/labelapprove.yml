@@ -6,7 +6,7 @@ name: CI
 on:
   label:
     types: [created, deleted]
-    jobs:
+ jobs:
       Find:
         needs: label
         env:
