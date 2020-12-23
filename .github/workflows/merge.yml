@@ -1,9 +1,5 @@
 name: automerge
 on:
-  workflow_run:
-    workflows: ["Labeler"]
-    types: 
-      - completed
   pull_request:
     types:
       - labeled
@@ -23,6 +19,7 @@ on:
   status: {}
 jobs:
   automerge:
+    if: github.event.review.state == 'approved' || !github.event.review
     runs-on: ubuntu-latest
     steps:
       - name: automerge
