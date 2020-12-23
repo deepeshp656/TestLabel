@@ -1,6 +1,5 @@
 name: Auto approve
 on: 
-  pull_request:
   workflow_run:
     workflows: ["Labeler"]
     types: 
