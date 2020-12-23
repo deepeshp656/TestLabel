@@ -32,6 +32,7 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
+        if: ${{!contains(github.event.pull_request.labels.*.name, 'bug')}}
 
       - uses: hmarr/auto-approve-action@v2.0.0
 
