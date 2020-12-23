@@ -1,0 +1,40 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. 
+on:
+  label:
+    types: [created, deleted]
+jobs:
+      Find:
+        
+        env:
+              GITHUB_CONTEXT: ${{ toJson(github) }}
+
+        name: Run only when the labels include "auto-run and then approve"
+        if: ${{ contains(github.event.pull_request.labels.*.name, 'auto-run') }}
+        runs-on: ubuntu-latest
+        steps:
+          - name: debug
+            run: |
+              echo "${{github.event.pull_request.labels.*.names}}"
+              echo "${{ toJson(github.event.pull_request.labels) }}"
+              echo "${{ toJson(github.event.pull_request.labels.*.name) }}"
+
+      autoapprove:
+
+        needs: Find
+        runs-on: ubuntu-latest
+        steps:
+          - name: Dump GitHub context
+            env:
+              GITHUB_CONTEXT: ${{ toJson(github) }}
+            run: echo "$GITHUB_CONTEXT"
+
+          - uses: hmarr/auto-approve-action@v2.0.0
+
+            with:
+             github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+
