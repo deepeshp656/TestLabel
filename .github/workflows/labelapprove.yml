@@ -4,8 +4,10 @@ name: labeltrigger
 
 # Controls when the action will run. 
 on:
-  label:
-    types: [created, deleted]
+  workflow_run:
+    workflows: ["labeler"]
+    types: 
+      - completed
 jobs:
       Find:
         
