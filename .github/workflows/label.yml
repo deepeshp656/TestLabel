@@ -9,6 +9,16 @@ name: Labeler
 on: [pull_request]
 
 jobs:
+  
+    
+  label:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/labeler@v3
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
   Find:
     needs: label
     env:
@@ -22,16 +32,7 @@ jobs:
         run: |
           echo "${{github.event.pull_request.labels.*.names}}"
           echo "${{ toJson(github.event.pull_request.labels) }}"
-          echo "${{ toJson(github.event.pull_request.labels.*.name) }}"
-    
-  label:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/labeler@v3
-      with:
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          echo "${{ toJson(github.event.pull_request.labels.*.name) }}"  
       
   autoapprove:
     
