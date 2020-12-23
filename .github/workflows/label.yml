@@ -11,6 +11,8 @@ on: [pull_request]
 jobs:
   Find:
     needs: label
+    env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
  
     name: Run only when the labels do not include "dependencies"
     if: ${{ !contains(github.event.pull_request.labels.*.names, 'auto-run') }}
