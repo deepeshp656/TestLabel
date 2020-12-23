@@ -11,9 +11,11 @@ on: [pull_request]
 jobs:
   Find:
     needs: label
+    env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
  
     name: Run only when the labels do not include "dependencies"
-    if: ${{ !contains(github.event.pull_request.labels.*.names, 'auto-run') }}
+    if: ${{ contains(github.event.pull_request.labels.*.name, 'auto-run') }}
     runs-on: ubuntu-latest
     steps:
       - name: debug
@@ -33,7 +35,7 @@ jobs:
       
   autoapprove:
     
-    needs: [label,Find]
+    needs: label
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
