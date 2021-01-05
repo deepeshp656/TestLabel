@@ -1,0 +1,55 @@
+name: run-script
+on: [pull_request]
+jobs:
+  dry-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v2
+
+      # - run: git ls-remote
+      - name: Checkout head and target branches
+        run: |
+          git fetch --no-tags --depth=1 origin ${{ github.base_ref }}
+          git fetch --no-tags --depth=1 origin ${{ github.head_ref }}
+          # get the actual source for two branches
+          git checkout origin/${{ github.base_ref }}
+          git checkout origin/${{ github.head_ref }}
+          # get back to the merge commit
+          git checkout ${{ github.sha }}
+      - name: All changed files and puttinng it in file and will be processed
+        run: |
+          
+            CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }} origin/${{ github.head_ref }})       
+            CHANGED_FILES_ARR=($CHANGED_FILES)
+            echo "Processing ........."
+           
+            for i in "${CHANGED_FILES_ARR[@]}"
+                do
+                   if [[ !("$i" == "approle"* )]]; then
+                      echo "files changed are not supported for auto approval will exit" 
+                      exit 1                  
+                   fi
+                  
+                done
+              #Getting files info changed in PR 
+             git diff --unified=0 origin/${{ github.base_ref }} origin/${{ github.head_ref }} >File
+            
+            # Uncomment below line to find changed files info
+            
+            #cat File   
+            
+            # removing base line with -- and getting remaing info 
+             grep -v '^\-\-' File >FilterFile
+             
+            #finding lines that has been deleted
+             grep '^\-' FilterFile > FinalFile
+             cat FinalFile | wc -l >e
+             echo $e
+             n=$(wc -l<FinalFile)
+             echo $n
+             if [[ $n -gt 0 ]]; then
+               echo "there are line that has been deleted"
+             fi
+             
+           
