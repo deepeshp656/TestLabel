@@ -55,7 +55,7 @@ def main():
     
     for comment in data:
         if "in_reply_to_id" not in comment:
-            if review_comment_check(comment['body'], comment['pull_request_review_id']):
+            if not review_comment_check(comment['body'], comment['pull_request_review_id']):
                 print(comment['path'])
     # Creates an API object
 
