@@ -20,10 +20,10 @@ def review_comment_check(comment_body):
     return res
 
 def review_comment_reply(pull_request_review_id):
-    url = "https://api.github.com/repos/octocat/hello-world/pulls/{}/comments/{}/replies".format(repository_name, pr, pull_request_review_id)
+    url = "https://api.github.com/repos/{}/pulls/{}/comments/{}/replies".format(repository_name, pr, pull_request_review_id)
     headers = { 'Accept': 'application/vnd.github.v3+json' }
     body = "Your review comment does not follow review etiquette "
-    resp = requests.get(url=url, headers=headers, body=body)
+    resp = requests.post(url=url, headers=headers, body=body)
     
     print("commented")
     
