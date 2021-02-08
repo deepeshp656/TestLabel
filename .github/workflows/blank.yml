@@ -28,3 +28,11 @@ jobs:
         env:
           PR_NUMBER: ${{ steps.pr_number.outputs.number }}  
         run: bash .github/script/review.sh
+        
+      - name: 'getting run ids'
+        id: tfcoutputs
+        uses: ./.github/actions/process-review-comments
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ steps.pr_number.outputs.number }}    
+          sha: ${{ github.sha }} 
