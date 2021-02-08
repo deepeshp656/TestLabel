@@ -28,10 +28,11 @@ def main():
     
     resp = requests.get(url=url, headers=headers)
     data = resp.json()
-    print(data)
+    #print(data)
     
     for comment in data:
-        print(comment['path'])
+        if "in_reply_to_id" in comment:
+            print(comment['path'])
     # Creates an API object
 
 
