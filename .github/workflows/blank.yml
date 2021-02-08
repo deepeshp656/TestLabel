@@ -35,4 +35,3 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ steps.pr_number.outputs.number }}    
-          sha: ${{ github.sha }} 
