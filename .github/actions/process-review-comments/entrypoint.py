@@ -29,7 +29,9 @@ def main():
     resp = requests.get(url=url, headers=headers)
     data = resp.json()
     print(data)
-
+    
+    for comment in data:
+        print(data['path'])
     # Creates an API object
 
 
