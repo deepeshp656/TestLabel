@@ -28,13 +28,15 @@ def review_comment_reply():
 
 def main():
     job_name = os.environ["GITHUB_WORKFLOW"]
-    global repository_name = os.environ["GITHUB_REPOSITORY"]
+    global repository_name 
+    repository_name = os.environ["GITHUB_REPOSITORY"]
     global pref_list
     pref_list = ['Change','Question','Concern']
     # setup arguments
     args = setup_args()
     github = Github(args.token)
-    global pr = args.pr_number
+    global pr
+    pr = args.pr_number
     print("Running in job %s on %s with sha %s" % (job_name, repository_name, args.pr_number))
     url = "https://api.github.com/repos/{}/pulls/{}/comments".format(repository_name, pr)
     
