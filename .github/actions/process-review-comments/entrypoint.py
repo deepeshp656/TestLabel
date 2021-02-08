@@ -38,10 +38,10 @@ def main():
     
     resp = requests.get(url=url, headers=headers)
     data = resp.json()
-    print(data)
+    #print(data)
     
     for comment in data:
-        if "in_reply_to_id" in comment:
+        if "in_reply_to_id" not in comment:
             if review_comment_check(comment['body']):
                 print(comment['path'])
     # Creates an API object
