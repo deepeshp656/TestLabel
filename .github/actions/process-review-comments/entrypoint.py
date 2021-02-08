@@ -49,7 +49,7 @@ def main():
     
     for comment in data:
         if "in_reply_to_id" not in comment:
-            if !review_comment_check(comment['body']):
+            if !(review_comment_check(comment['body'])):
                 print(comment['path'])
     # Creates an API object
 
