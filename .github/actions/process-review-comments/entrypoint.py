@@ -31,7 +31,7 @@ def main():
     print(data)
     
     for comment in data:
-        print(data['path'])
+        print(comment['path'])
     # Creates an API object
 
 
