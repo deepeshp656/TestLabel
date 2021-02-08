@@ -18,20 +18,25 @@ def review_comment_check(comment_body):
     print(res)
     
     return res
+def review_comment_reply():
+    url = "https://api.github.com/repos/octocat/hello-world/pulls/{}/comments/{}/replies".format(repository_name, pr, pull_request_review_id)
+    headers = { 'Accept': 'application/vnd.github.v3+json' }
+    body = "Your review comment does not follow review etiquette "
+    resp = requests.get(url=url, headers=headers, body=body)
     
 
 
 def main():
     job_name = os.environ["GITHUB_WORKFLOW"]
-    repository_name = os.environ["GITHUB_REPOSITORY"]
+    global repository_name = os.environ["GITHUB_REPOSITORY"]
     global pref_list
     pref_list = ['Change','Question','Concern']
     # setup arguments
     args = setup_args()
     github = Github(args.token)
-    pr = args.pr_number
+    global pr = args.pr_number
     print("Running in job %s on %s with sha %s" % (job_name, repository_name, args.pr_number))
-    url = "https://api.github.com/repos/deepeshp656/TestLabel/pulls/{}/comments".format(pr)
+    url = "https://api.github.com/repos/{}/pulls/{}/comments".format(repository_name, pr)
     
     print(url)
     headers = { 'Accept': 'application/vnd.github.v3+json' }
@@ -42,7 +47,7 @@ def main():
     
     for comment in data:
         if "in_reply_to_id" not in comment:
-            if review_comment_check(comment['body']):
+            if !review_comment_check(comment['body']):
                 print(comment['path'])
     # Creates an API object
 
