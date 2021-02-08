@@ -15,6 +15,7 @@ def setup_args():
 def review_comment_check(comment_body):
     print(comment_body)
     res = comment_body.startswith(tuple(pref_list)) 
+    print(res)
     
     return res
     
