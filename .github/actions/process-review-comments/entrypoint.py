@@ -21,7 +21,7 @@ def main():
     github = Github(args.token)
     pr = args.pr_number
     print("Running in job %s on %s with sha %s" % (job_name, repository_name, args.pr_number))
-    url = "https://api.github.com/repos/deepeshp656/TestLabel/pulls/{pr}/comments"
+    url = "https://api.github.com/repos/deepeshp656/TestLabel/pulls/{}/comments".format(pr)
     
     print(url)
     headers = { 'Accept': 'application/vnd.github.v3+json' }
