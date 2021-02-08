@@ -12,10 +12,19 @@ def setup_args():
 
     return parser.parse_args()
 
+def review_comment_check(comment_body):
+    print(comment_body)
+    res = comment_body.startswith(tuple(pref_list)) 
+    
+    return res
+    
+
 
 def main():
     job_name = os.environ["GITHUB_WORKFLOW"]
     repository_name = os.environ["GITHUB_REPOSITORY"]
+    global pref_list
+    pref_list = ['Change','Question','Concern']
     # setup arguments
     args = setup_args()
     github = Github(args.token)
@@ -32,7 +41,8 @@ def main():
     
     for comment in data:
         if "in_reply_to_id" in comment:
-            print(comment['path'])
+            if review_comment_check(comment['body'])
+                print(comment['path'])
     # Creates an API object
 
 
