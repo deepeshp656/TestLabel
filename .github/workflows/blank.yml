@@ -20,9 +20,11 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: pr
-        run:  echo $GITHUB_REF | cut -d/ -f 3
+        id: pr_number
+        run:  echo "::set-output name=number::`echo $GITHUB_REF | cut -d/ -f 3`"
         
-
       # Runs a single command using the runners shell
       - name: Run a one-line script
+        env:
+          PR_NUMBER: ${{ steps.pr_number.outputs.number }}  
         run: bash .github/script/review.sh
