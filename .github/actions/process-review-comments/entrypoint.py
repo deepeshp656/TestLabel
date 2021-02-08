@@ -18,11 +18,11 @@ def main():
     repository_name = os.environ["GITHUB_REPOSITORY"]
     # setup arguments
     args = setup_args()
-    print("Running in job %s on %s with sha %s" % (job_name, repository_name, args.pr-number))
+    print("Running in job %s on %s with sha %s" % (job_name, repository_name, args.pr_number))
 
     # Creates an API object
     github = Github(args.token)
-    pr_number = Github(args.pr-number)
+    pr_number = args.pr_number
 
 
 if __name__ == "__main__":
