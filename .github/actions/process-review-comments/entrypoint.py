@@ -12,13 +12,10 @@ def setup_args():
 
     return parser.parse_args()
 
-def review_comment_check(comment_body, pull_request_review_id):
+def review_comment_check(comment_body):
     print(comment_body)
     res = comment_body.startswith(tuple(pref_list)) 
     print(res)
-    if res == 'False':
-        print("comenting")
-        review_comment_reply(pull_request_review_id)
     
     return res
 
@@ -55,7 +52,9 @@ def main():
     
     for comment in data:
         if "in_reply_to_id" not in comment:
-            if not review_comment_check(comment['body'], comment['pull_request_review_id']):
+            if not review_comment_check(comment['body']):
+                print("comenting")
+                review_comment_reply(comment['pull_request_review_id'])
                 print(comment['path'])
     # Creates an API object
 
