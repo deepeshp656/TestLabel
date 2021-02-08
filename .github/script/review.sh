@@ -1,3 +1,5 @@
 curl \
   -H "Accept: application/vnd.github.v3+json" \
-  https://api.github.com/repos/octocat/hello-world/pulls/42/comments
+  https://api.github.com/repos/deepeshp656/TestLabel/pulls/"$PR_NUMBER"/comments
+
+echo "54"
