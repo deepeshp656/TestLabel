@@ -18,7 +18,7 @@ def review_comment_check(comment_body):
     print(res)
     
     return res
-def review_comment_reply():
+def review_comment_reply(pull_request_review_id):
     url = "https://api.github.com/repos/octocat/hello-world/pulls/{}/comments/{}/replies".format(repository_name, pr, pull_request_review_id)
     headers = { 'Accept': 'application/vnd.github.v3+json' }
     body = "Your review comment does not follow review etiquette "
@@ -50,6 +50,7 @@ def main():
     for comment in data:
         if "in_reply_to_id" not in comment:
             if review_comment_check(comment['body']) = false:
+                review_comment_reply(comment['pull_request_review_id'])
                 print(comment['path'])
     # Creates an API object
 
