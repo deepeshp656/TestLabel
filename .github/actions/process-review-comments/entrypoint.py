@@ -19,6 +19,11 @@ def main():
     # setup arguments
     args = setup_args()
     print("Running in job %s on %s with sha %s" % (job_name, repository_name, args.pr_number))
+    url = "https://api.github.com/repos/deepeshp656/TestLabel/pulls/{PR_NUMBER}/comments"
+    headers = "Accept: application/vnd.github.v3+json"
+    
+    resp = requests.get(url=url, headers=headers)
+    data = resp.json()
 
     # Creates an API object
     github = Github(args.token)
