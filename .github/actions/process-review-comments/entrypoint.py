@@ -16,20 +16,9 @@ def setup_args():
 def review_comment_check(comment_body):
     print(comment_body)
     res = comment_body.startswith(tuple(pref_list)) 
-    print(res)
     
     return res
 
-def review_comment_reply(id, github):
-    url = "https://api.github.com/repos/{}/pulls/{}/comments/{}/replies".format(repository_name, pr, id)
-    print(url)
-    headers = { 'Accept': 'application/vnd.github.v3+json',
-              'Authorization': 'Bearer ' + str(github) }
-    print(headers)
-    payload = {'body': 'Your review comment does not follow review etiquette'}
-    resp = requests.post(url=url, headers=headers, data=json.dumps(payload))
-    
-    print(resp)
     
 def review_comment_edit(id, github, body):
     url = "https://api.github.com/repos/{}/pulls/comments/{}".format(repository_name, id)
@@ -37,7 +26,7 @@ def review_comment_edit(id, github, body):
     headers = { 'Accept': 'application/vnd.github.v3+json',
               'Authorization': 'Bearer ' + str(github) }
     print(headers)
-    payload = {'body': 'following review comment does not follow review etiquette' + str(body)}
+    payload = {'body': '⚠️  review etiquette not followed on : ' + str(body) + ' For more information please visit : https://github.com/HomeXLabs/reviewington/blob/main/docs/pr_etiquette.md '}
     resp = requests.patch(url=url, headers=headers, data=json.dumps(payload))
     
     print(resp)
@@ -63,18 +52,15 @@ def main():
     
     resp = requests.get(url=url, headers=headers)
     data = resp.json()
-    #print(data)
     
     for comment in data:
         if "in_reply_to_id" not in comment:
             if not review_comment_check(comment['body']):
-                print("comenting")
-                review_comment_reply(comment['id'], github)
                 review_comment_edit(comment['id'], github, comment['body'])
-                print(comment['path'])
     # Creates an API object
 
 
 
 if __name__ == "__main__":
     main()
+
