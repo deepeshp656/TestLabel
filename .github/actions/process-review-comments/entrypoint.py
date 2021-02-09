@@ -26,7 +26,7 @@ def review_comment_edit(id, github, body):
     headers = { 'Accept': 'application/vnd.github.v3+json',
               'Authorization': 'Bearer ' + str(github) }
     print(headers)
-    payload = {'body': '⚠️  review etiquette not followed on : ' + str(body) + ' /n/n/n For more information please visit : https://github.com/HomeXLabs/reviewington/blob/main/docs/pr_etiquette.md '}
+    payload = {'body': '⚠️  review etiquette not followed on : ' + str(body) + ' \n \n \n For more information please visit : https://github.com/HomeXLabs/reviewington/blob/main/docs/pr_etiquette.md '}
     resp = requests.patch(url=url, headers=headers, data=json.dumps(payload))
     
     print(resp)
