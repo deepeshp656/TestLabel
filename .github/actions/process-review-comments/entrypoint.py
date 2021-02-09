@@ -20,7 +20,7 @@ def review_comment_check(comment_body):
     
     return res
 
-def review_comment_reply(pull_request_review_id):
+def review_comment_reply(id):
     url = "https://api.github.com/repos/{}/pulls/{}/comments/{}/replies".format(repository_name, pr, id)
     print(url)
     headers = { 'Accept': 'application/vnd.github.v3+json',
