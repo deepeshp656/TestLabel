@@ -20,11 +20,11 @@ def review_comment_check(comment_body):
     
     return res
 
-def review_comment_reply(id):
+def review_comment_reply(id, github):
     url = "https://api.github.com/repos/{}/pulls/{}/comments/{}/replies".format(repository_name, pr, id)
     print(url)
     headers = { 'Accept': 'application/vnd.github.v3+json',
-              'Authorization': 'Bearer' + str(args.token) }
+              'Authorization': 'Bearer' + str(github) }
     print(headers)
     payload = {'body': 'Your review comment does not follow review etiquette'}
     resp = requests.post(url=url, headers=headers, data=json.dumps(payload))
@@ -41,7 +41,7 @@ def main():
     pref_list = ['Change','Question','Concern']
     # setup arguments
     args = setup_args()
-    github = Github(args.token)
+    github = args.token
     global pr
     pr = args.pr_number
     print("Running in job %s on %s with sha %s" % (job_name, repository_name, args.pr_number))
@@ -58,7 +58,7 @@ def main():
         if "in_reply_to_id" not in comment:
             if not review_comment_check(comment['body']):
                 print("comenting")
-                review_comment_reply(comment['id'])
+                review_comment_reply(comment['id'], github)
                 print(comment['path'])
     # Creates an API object
 
