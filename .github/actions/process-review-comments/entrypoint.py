@@ -19,7 +19,7 @@ def review_comment_check(comment_body):
     return comment_body.startswith(tuple(pref_list))
 
 
-def parse_review_comment(data):
+def parse_review_comment(data, github):
     for comment in data:
         if "in_reply_to_id" not in comment:
             if not review_comment_check(comment["body"]):
@@ -75,7 +75,7 @@ def main():
 
     resp = requests.get(url=url, headers=headers)
     data = resp.json()
-    parse_review_comment(data)
+    parse_review_comment(data, github)
 
 
 if __name__ == "__main__":
