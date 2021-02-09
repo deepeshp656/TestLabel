@@ -1,2 +1,2 @@
 PyGithub==1.54.1
-json
+requests==2.20.0
