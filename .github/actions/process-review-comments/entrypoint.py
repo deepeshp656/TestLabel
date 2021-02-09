@@ -32,13 +32,13 @@ def review_comment_reply(id, github):
     print(resp)
     
 def review_comment_edit(id, github, body):
-    url = "https://api.github.com/repos/{}/pulls/{}/comments/{}/replies".format(repository_name, pr, id)
+    url = "https://api.github.com/repos/{}/pulls/comments/{}".format(repository_name, id)
     print(url)
     headers = { 'Accept': 'application/vnd.github.v3+json',
               'Authorization': 'Bearer ' + str(github) }
     print(headers)
     payload = {'body': 'following review comment does not follow review etiquette' + str(body)}
-    resp = requests.post(url=url, headers=headers, data=json.dumps(payload))
+    resp = requests.patch(url=url, headers=headers, data=json.dumps(payload))
     
     print(resp)
     
