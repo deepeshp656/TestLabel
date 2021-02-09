@@ -21,6 +21,7 @@ def review_comment_check(comment_body):
 
 def parse_review_comment(data, github):
     for comment in data:
+        print(comment)
         if "in_reply_to_id" not in comment:
             if not review_comment_check(comment["body"]):
                 review_comment_edit(comment["id"], github, comment["body"])
