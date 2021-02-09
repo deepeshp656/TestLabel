@@ -27,7 +27,7 @@ def review_comment_reply(pull_request_review_id):
     payload = {'body': 'Your review comment does not follow review etiquette'}
     resp = requests.post(url=url, headers=headers, data=json.dumps(payload))
     
-    print("resp)
+    print(resp)
     
 
 
