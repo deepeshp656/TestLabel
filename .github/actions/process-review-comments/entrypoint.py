@@ -31,6 +31,17 @@ def review_comment_reply(id, github):
     
     print(resp)
     
+def review_comment_edit(id, github, body):
+    url = "https://api.github.com/repos/{}/pulls/{}/comments/{}/replies".format(repository_name, pr, id)
+    print(url)
+    headers = { 'Accept': 'application/vnd.github.v3+json',
+              'Authorization': 'Bearer ' + str(github) }
+    print(headers)
+    payload = {'body': 'following review comment does not follow review etiquette' + str(body)}
+    resp = requests.post(url=url, headers=headers, data=json.dumps(payload))
+    
+    print(resp)
+    
 
 
 def main():
@@ -59,6 +70,7 @@ def main():
             if not review_comment_check(comment['body']):
                 print("comenting")
                 review_comment_reply(comment['id'], github)
+                review_comment_edit(comment['id'], github, comment['body'])
                 print(comment['path'])
     # Creates an API object
 
