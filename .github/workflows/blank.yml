@@ -24,14 +24,15 @@ jobs:
         run:  echo "::set-output name=number::`echo $GITHUB_REF | cut -d/ -f 3`"
         
       # Runs a single command using the runners shell
-      - name: Run a one-line script
-        env:
-          PR_NUMBER: ${{ steps.pr_number.outputs.number }}  
-        run: bash .github/script/review.sh
         
       - name: 'getting run ids'
         id: tfcoutputs
         uses: ./.github/actions/process-review-comments
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ steps.pr_number.outputs.number }}    
+          PR_NUMBER: ${{ steps.pr_number.outputs.number }}  
+            
+      - name: Run a one-line script
+        env:
+          PR_NUMBER: ${{ steps.pr_number.outputs.number }}  
+        run: bash .github/script/review.sh    
