@@ -38,7 +38,7 @@ def main():
     global repository_name 
     repository_name = os.environ["GITHUB_REPOSITORY"]
     global pref_list
-    pref_list = ['Change','Question','Concern']
+    pref_list = ['Change','Question','Concern', '⚠️'  ]
     # setup arguments
     args = setup_args()
     github = args.token
