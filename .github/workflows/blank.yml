@@ -34,5 +34,6 @@ jobs:
             
       - name: Run a one-line script
         env:
-          PR_NUMBER: ${{ steps.pr_number.outputs.number }}  
+          PR_NUMBER: ${{ steps.pr_number.outputs.number }} 
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
         run: bash .github/script/review.sh    
