@@ -26,7 +26,7 @@ def fuzzy_review_comment_check(comment_body):
     print(match)
     if not match:
         return true
-    else
+    else:
         return false
 
 
