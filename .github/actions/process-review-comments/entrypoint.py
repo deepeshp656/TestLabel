@@ -20,7 +20,7 @@ def review_comment_check(comment_body):
     return comment_body.startswith(tuple(pref_list))
 
 def fuzzy_review_comment_check(comment_body):
-    first_word = comment_body.split()
+    first_word = comment_body.split()[0]
     print(first_word)
     res = get_close_matches(first_word, pref_list)
     print(res)
