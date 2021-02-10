@@ -6,7 +6,7 @@ inputs:
     description: "A GitHub token for the repo"
     required: false
     default: ${{ github.token }}
-  PR_NUMBER:
+  GIT_REF:
     description: "PR number"
     required: true
     
@@ -16,5 +16,5 @@ runs:
   args:
     - --token
     - ${{ inputs.GITHUB_TOKEN }}
-    - --pr-number
-    - ${{ inputs.PR_NUMBER }}
+    - --ref
+    - ${{ inputs.GIT_REF }}
