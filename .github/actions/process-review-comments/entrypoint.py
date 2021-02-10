@@ -21,17 +21,16 @@ def review_comment_check(comment_body):
 
 def fuzzy_review_comment_check(comment_body):
     first_word = comment_body.split()[0]
-    print(first_word)
-    res = get_close_matches(first_word, pref_list)
-    print(res)
+    match = get_close_matches(first_word, pref_list)
+    if not match:
+        return true
 
 
 
 def parse_review_comment(data, github):
     for comment in data:
         if "in_reply_to_id" not in comment:
-            fuzzy_review_comment_check(comment["body"])
-            if not review_comment_check(comment["body"]):
+            if not fuzzy_review_comment_check(comment["body"]):
                 review_comment_edit(comment["id"], github, comment["body"])
 
 
@@ -51,7 +50,6 @@ def review_comment_edit(id, github, body):
     }
     resp = requests.patch(url=url, headers=headers, data=json.dumps(payload))
 
-    print(resp)
 
 
 def main():
