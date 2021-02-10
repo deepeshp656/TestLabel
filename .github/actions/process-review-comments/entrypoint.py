@@ -74,12 +74,9 @@ def main():
     ]
     # setup arguments
     args = setup_args()
-    github = os.environ["GITHUB_REF"]
-    print(github)
+    git_ref = os.environ["GITHUB_REF"]
     global pr
-    git_ref= args.ref
-    print(git_ref)
-    pr = 2 #git_ref.split("/")[2]
+    pr = git_ref.split("/")[2]
     
 
     url = "https://api.github.com/repos/{}/pulls/{}/comments".format(
