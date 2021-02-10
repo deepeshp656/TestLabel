@@ -22,12 +22,13 @@ def review_comment_check(comment_body):
 def fuzzy_review_comment_check(comment_body):
     first_word = comment_body.split()[0]
     print(first_word)
-    match = get_close_matches(first_word, pref_list)
+    match = get_close_matches(first_word, pref_list, cutoff=0.8)
     print(match)
     if not match:
-        return True
-    else:
         return False
+    else:
+        return True
+    
 
 
 
