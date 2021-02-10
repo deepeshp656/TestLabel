@@ -74,7 +74,7 @@ def main():
     ]
     # setup arguments
     args = setup_args()
-    github = args.token
+    github = os.environ["GITHUB_REF"]
     global pr
     git_ref= args.ref
     print(git_ref)
