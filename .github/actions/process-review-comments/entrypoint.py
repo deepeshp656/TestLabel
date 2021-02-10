@@ -3,6 +3,8 @@ import argparse
 import os
 import requests
 import json
+from fuzzywuzzy import fuzz
+from fuzzywuzzy import process
 from urllib.parse import urlparse
 
 
@@ -18,11 +20,16 @@ def review_comment_check(comment_body):
 
     return comment_body.startswith(tuple(pref_list))
 
+def fuzzy_review_comment_check(comment_body):
+    first_word = comment_body.split()
+    print process.extractOne(first_word, pref_list), '\n'
+
+
 
 def parse_review_comment(data, github):
     for comment in data:
-        print(comment)
         if "in_reply_to_id" not in comment:
+            fuzzy_review_comment_check(comment["body"])
             if not review_comment_check(comment["body"]):
                 review_comment_edit(comment["id"], github, comment["body"])
 
@@ -37,7 +44,7 @@ def review_comment_edit(id, github, body):
     }
     print(headers)
     payload = {
-        "body": "⚠️  review etiquette not followed on : "
+        "body": "⚠️  review etiquette not followed on ⚠️  :  "
         + str(body)
         + " \n \n For more information please visit : https://github.com/HomeXLabs/reviewington/blob/main/docs/pr_etiquette.md "
     }
