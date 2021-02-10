@@ -25,9 +25,9 @@ def fuzzy_review_comment_check(comment_body):
     match = get_close_matches(first_word, pref_list)
     print(match)
     if not match:
-        return true
+        return True
     else:
-        return false
+        return False
 
 
 
