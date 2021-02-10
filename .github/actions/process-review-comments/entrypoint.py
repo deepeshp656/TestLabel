@@ -78,7 +78,7 @@ def main():
     global pr
     git_ref= args.ref
     print(git_ref)
-    pr = git_ref.split("/")[2]
+    pr = 2 #git_ref.split("/")[2]
     
 
     url = "https://api.github.com/repos/{}/pulls/{}/comments".format(
