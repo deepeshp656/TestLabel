@@ -1,4 +1,4 @@
 PyGithub==1.54.1
 requests==2.20.0
 fuzzywuzzy==0.18.0
-python-Levenshtein==0.10.1
+python-Levenshtein==0.12.1
