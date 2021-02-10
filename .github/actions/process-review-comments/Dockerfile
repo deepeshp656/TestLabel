@@ -4,7 +4,7 @@ FROM python:3.7-alpine
 # Install pre-req
 COPY requirements.txt /
 RUN pip install -r /requirements.txt
-RUN pip install python-Levenshtein
+RUN pip install python-dev build-essential python-Levenshtein
 
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.py /entrypoint.py
