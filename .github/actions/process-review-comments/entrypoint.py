@@ -22,7 +22,8 @@ def review_comment_check(comment_body):
 
 def fuzzy_review_comment_check(comment_body):
     first_word = comment_body.split()
-    print process.extractOne(first_word, pref_list), '\n'
+    res = process.extractOne(first_word, pref_list)
+    print(res)
 
 
 
