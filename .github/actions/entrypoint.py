@@ -23,7 +23,7 @@ def main():
     # Creates an API object
     github = Github(args.token)
     pr_number = Github(args.pr-number)
-
+.
 
 if __name__ == "__main__":
     main()
