@@ -30,6 +30,6 @@ jobs:
         uses: ./.github/actions/process-review-comments
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GIT_REF: ${{ GITHUB_REF }}
+          GIT_REF: ${{ github.head_ref }}
             
    
