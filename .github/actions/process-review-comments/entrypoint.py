@@ -20,6 +20,16 @@ def review_comment_check(comment_body):
     return comment_body.startswith(tuple(pref_list))
 
 
+def fuzzy_review_comment_check(comment_body):
+    first_word = comment_body.split()[0]
+    match = get_close_matches(first_word, pref_list, cutoff=0.8)
+    print(match)
+    if not match:
+        return False
+    else:
+        return True
+    
+
 def parse_review_comment(data):
     for comment in data:
         if "in_reply_to_id" not in comment:
