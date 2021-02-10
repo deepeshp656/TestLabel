@@ -3,7 +3,7 @@ import argparse
 import os
 import requests
 import json
-from cdifflib import Cget_close_matches
+from difflib import get_close_matches
 from urllib.parse import urlparse
 
 
@@ -22,7 +22,7 @@ def review_comment_check(comment_body):
 def fuzzy_review_comment_check(comment_body):
     first_word = comment_body.split()
     print(first_word)
-    res = Cget_close_matches(first_word, pref_list)
+    res = get_close_matches(first_word, pref_list)
     print(res)
 
 
