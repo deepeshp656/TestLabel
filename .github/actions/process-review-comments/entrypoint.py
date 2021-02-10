@@ -77,6 +77,7 @@ def main():
     github = args.token
     global pr
     git_ref= args.ref
+    print(git_ref)
     pr = git_ref.split("/")[2]
     
 
