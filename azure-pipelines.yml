@@ -4,11 +4,12 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+# this pipeline has one implicit stage
+jobs:
+- job: A
+  steps:
+  - bash: echo "A"
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- job: B
+  steps:
+  - bash: echo "B"
