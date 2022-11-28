@@ -9,28 +9,6 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
-
-trigger:
-- '*'
-
-pool:
-  name: Default
-
-variables:
-  image_name: mcr.microsoft.com/businesscentral/sandbox
-  container_name: Build
-  company_name: My Company
-  user_name: admin
-  password: P@ssword1
-  license_file: C:\Users\james.pearson.TECMAN\Desktop\Licence.flf
 
 stages:
 - stage: build
