@@ -17,3 +17,53 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
+trigger:
+- '*'
+
+pool:
+  name: Default
+
+variables:
+  image_name: mcr.microsoft.com/businesscentral/sandbox
+  container_name: Build
+  company_name: My Company
+  user_name: admin
+  password: P@ssword1
+  license_file: C:\Users\james.pearson.TECMAN\Desktop\Licence.flf
+
+stages:
+- stage: build
+  displayName: Build
+  jobs:
+  - job: Build
+    pool:
+      name: Default
+    steps:
+    - script: echo Hello, world!
+      displayName: 'Run a one-line script'
+
+    - script: |
+        echo Add other tasks to build, test, and deploy your project.
+        echo See https://aka.ms/yaml
+      displayName: 'Run a multi-line script'
+- stage: Release
+  displayName: Release
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+  jobs:
+  - deployment:
+    displayName: Release
+    pool:
+      name: Default
+    environment: Release
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo Hello, world!
+            displayName: 'Run a one-line script'
+
+          - script: |
+              echo Add other tasks to build, test, and deploy your project.
+              echo See https://aka.ms/yaml
+            displayName: 'Run a multi-line script'
