@@ -9,22 +9,21 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-
 stages:
 - stage: build
   displayName: Build
   jobs:
   - job: Build
     pool:
-      name: Default
+      name: ubuntu-latest
     steps:
     - script: echo Hello, world!
       displayName: 'Run a one-line script'
-
     - script: |
         echo Add other tasks to build, test, and deploy your project.
         echo See https://aka.ms/yaml
       displayName: 'Run a multi-line script'
+
 - stage: Release
   displayName: Release
   condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
@@ -32,7 +31,7 @@ stages:
   - deployment:
     displayName: Release
     pool:
-      name: Default
+      name: ubuntu-latest
     environment: Release
     strategy:
       runOnce:
