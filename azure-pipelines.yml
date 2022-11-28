@@ -3,24 +3,26 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
+  
+stages:
 
 - stage: Test
   jobs:
-- job: A
-  steps:
-  - bash: echo "A"
+  - job: A
+    steps:
+    - bash: echo "A"
 
-- job: B
-  steps:
-  - bash: echo "B"
+  - job: B
+    steps:
+    - bash: echo "B"
 
-- job: C
-  steps:
-  - bash: echo "C"
+  - job: C
+    steps:
+    - bash: echo "C"
 
-- job: D
-  steps:
-  - bash: echo "D"
+  - job: D
+    steps:
+    - bash: echo "D"
 
 - stage: DeployUS1
   dependsOn: Test    # this stage runs after Test
